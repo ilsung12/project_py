@@ -16,7 +16,7 @@ root.geometry("640x480+300+300")
     
 
 p_var2 = DoubleVar()
-progressbar2 = ttk.Progressbar(root, maximum=100, length=150, variable=p_var2)
+progressbar2 = ttk.Progressbar(root, maximum=100, length=150, variable=p_var2) # 최소 / 최대
 progressbar2.pack()
 
 def btncmd2():
