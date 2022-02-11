@@ -13,7 +13,11 @@ from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 
+<<<<<<< HEAD
 HOST = '172.16.53.123'
+=======
+HOST = '127.0.0.1'
+>>>>>>> 0abe4fd28b0f3827f9270b7faf8f988917f3c780
 PORT = 8081
 
 g_connected = False
