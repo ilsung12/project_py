@@ -6,11 +6,10 @@ import socket
 import os
 from time import sleep
 
-<<<<<<< HEAD
+
 HOST = "172.16.53.123"
-=======
-HOST = "127.0.0.1"
->>>>>>> 0abe4fd28b0f3827f9270b7faf8f988917f3c780
+
+#HOST = "127.0.0.1"
 PORT = 8081
 
 # 수신 : 파일명에 실시간을 적음으로서 같은 파일이 아니게 됨

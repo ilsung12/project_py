@@ -13,11 +13,9 @@ from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 
-<<<<<<< HEAD
+
 HOST = '172.16.53.123'
-=======
-HOST = '127.0.0.1'
->>>>>>> 0abe4fd28b0f3827f9270b7faf8f988917f3c780
+
 PORT = 8081
 
 g_connected = False
@@ -150,17 +148,25 @@ class sendSvr(QThread):
         cnt = 0
         try:
             while self.isRun:
-            
+                with open(g_filePath + g_fileName, 'rb') as f:
+                    try:
+                        data = f.read(1024)
+                        print('쓰레드 동작중')
+                        if len(data) > 0:
+                            self.send(data)
+                        f.close()
+                    except Exception as e:
+                        print(e)
                 cnt += 1
 
                 print(cnt)
-                self.send()
-                self.receive()
+                # self.send()
+                # self.receive()
         except Exception as ex:
             print('TH Error', ex)
                 
 
-    def send(self):
+    def send(self, data):
         # for i in range(1, 5):
         #     saveCnt = i
         global g_connected
@@ -169,26 +175,27 @@ class sendSvr(QThread):
 
         # 보내는 파일
         
-        with open(g_filePath + g_fileName, 'rb') as f:
-            try:
-                while True:
-                    data = f.read(1024)
-                    print('쓰레드 동작중')
-                    if data:
-                        g_client_socket.sendall(data)
-                        #sleep(1)
-                        #g_client_socket.shutdown(socket.SHUT_WR)
-                    else:
-                        break
-                # ------------------------------------ #
-                g_client_socket.shutdown(socket.SHUT_WR)
-                g_connected = False
-                g_client_socket.close()
-                print('소켓연결을 종료했습니다.')                  
-                #sleep(1)
-                # ------------------------------------ #
-            except Exception as e:
-                print(e)
+        g_client_socket.sendall(data)
+        g_client_socket.close
+            # try:
+            #     while True:
+            #         data = f.read(1024)
+            #         print('쓰레드 동작중')
+            #         if data:
+            #             g_client_socket.sendall(data)
+            #             #sleep(1)
+            #             #g_client_socket.shutdown(socket.SHUT_WR)
+            #         else:
+            #             break
+            #     # ------------------------------------ #
+            #     g_client_socket.shutdown(socket.SHUT_WR)
+            #     g_connected = False
+            #     g_client_socket.close()
+            #     print('소켓연결을 종료했습니다.')                  
+            #     #sleep(1)
+            #     # ------------------------------------ #
+            # except Exception as e:
+            #     print(e)
             
 
 
