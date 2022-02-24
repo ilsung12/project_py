@@ -15,7 +15,9 @@ class ShowVideo(QtCore.QObject):
     #camera = cv2.VideoCapture(0)
 
     camera = cv2.VideoCapture(url)
+    
 
+    # 카메라에서 이미지 얻기
     ret, image = camera.read()
     height, width = image.shape[:2]
    
