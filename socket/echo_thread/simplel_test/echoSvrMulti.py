@@ -1,8 +1,8 @@
-'''server3.py : multi echo server'''
+#'''server3.py : multi echo server'''
 import socket
 from threading import Thread
 def echo_handler(conn, addr, terminator="bye"):
-    '''개별 연결에 대해 에코잉을 처리하는 핸들러'''
+    #'''개별 연결에 대해 에코잉을 처리하는 핸들러'''
     BUF_SIZE = 1024
     while True:
         data = conn.recv(BUF_SIZE)
