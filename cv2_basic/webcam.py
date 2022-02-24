@@ -1,5 +1,6 @@
 import cv2
 import sys
+import numpy as np
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
 from PyQt5 import QtGui
@@ -8,12 +9,20 @@ from PyQt5 import QtGui
 class ShowVideo(QtCore.QObject):
 
     flag = 0
-
+    url = 'rtsp://admin:12345@172.16.53.204:554/cam/realmonitor?channel=1&subtype=1'
+    #url = 'rtsp://admin:12345@192.168.29.30:554/cam/realmonitor?channel=1&subtype=0'
     # Error : Disconnected Cam
-    camera = cv2.VideoCapture(0)
+    #camera = cv2.VideoCapture(0)
+
+    camera = cv2.VideoCapture(url)
 
     ret, image = camera.read()
     height, width = image.shape[:2]
+   
+    #height = height/2
+    width = width/2 
+    
+    print('height==>',height, 'width==>', width)
 
     VideoSignal1 = QtCore.pyqtSignal(QtGui.QImage)
     VideoSignal2 = QtCore.pyqtSignal(QtGui.QImage)
@@ -79,6 +88,7 @@ class ImageViewer(QtWidgets.QWidget):
         if image.isNull():
             print("Viewer Dropped frame!")
 
+        # GUI를 이미지에맞춰서
         self.image = image
         if image.size() != self.size():
             self.setFixedSize(image.size())
@@ -87,7 +97,6 @@ class ImageViewer(QtWidgets.QWidget):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-
 
     thread = QtCore.QThread()
     thread.start()
