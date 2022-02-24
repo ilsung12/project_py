@@ -173,7 +173,7 @@ class sendSvr(QThread):
         global g_fileName
         global g_filePath
 
-        # 보내는 파일
+        # 보내는 파일s
         
         g_client_socket.sendall(data)
         g_client_socket.close
